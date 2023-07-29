@@ -1,5 +1,10 @@
 import "./index.css";
 
+const initialItems = [
+  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 2, description: "Socks", quantity: 12, packed: false },
+];
+
 const App = () => {
   return (
     <div className="app">
@@ -22,14 +27,32 @@ const Form = () => {
   );
 };
 const PackingList = () => {
-  return <div className="list">LIST</div>;
+  return (
+    <div className="list">
+      <ul>
+        {initialItems.map((item) => (
+          <Item item={item} />
+        ))}
+      </ul>
+    </div>
+  );
 };
 const Stats = () => {
   return (
-    <footer>
+    <footer className="stats">
       <em>💼 You have n items on your list, and you already packed n (n%)</em>
     </footer>
   );
 };
-
+const Item = ({ item }) => {
+  return (
+    <li>
+      <span>
+        {item.quantity}
+        {item.description}
+      </span>
+      <button>❌</button>
+    </li>
+  );
+};
 export default App;
