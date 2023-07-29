@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./index.css";
 
 const initialItems = [
@@ -20,6 +21,7 @@ const Logo = () => {
   return <h1>🏝️ Far away 🧳</h1>;
 };
 const Form = () => {
+  const [description, setDescription] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -33,7 +35,12 @@ const Form = () => {
           </option>
         ))}
       </select>
-      <input type="text" placeholder="Item..."></input>
+      <input
+        type="text"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      ></input>
       <button>Add</button>
     </form>
   );
