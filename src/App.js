@@ -7,11 +7,17 @@ const initialItems = [
 ];
 
 const App = () => {
+  const [items, setItems] = useState([]);
+  const handleAddItems = (item) => {
+    //Creating new array, since React is immutable and we can't simply update the previous array
+    setItems((items) => [...items, item]);
+  };
+
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItems={handleAddItems} />
+      <PackingList items={items} />
       <Stats />
     </div>
   );
@@ -20,12 +26,10 @@ const App = () => {
 const Logo = () => {
   return <h1>🏝️ Far away 🧳</h1>;
 };
-const Form = () => {
+const Form = ({ onAddItems }) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [items, setItems] = useState([]);
 
-  const handleAddItems = (item) => {};
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -38,7 +42,7 @@ const Form = () => {
       id: Date.now(),
     };
 
-    handleAddItems(newItem);
+    onAddItems(newItem);
     setDescription("");
     setQuantity(1);
   };
@@ -65,11 +69,11 @@ const Form = () => {
     </form>
   );
 };
-const PackingList = () => {
+const PackingList = ({ items }) => {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
+        {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}
       </ul>
