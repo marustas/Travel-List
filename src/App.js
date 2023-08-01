@@ -23,19 +23,22 @@ const Logo = () => {
 const Form = () => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [items, setItems] = useState([]);
 
+  const handleAddItems = (item) => {};
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!description) return;
+
     const newItem = {
       description,
       quantity,
       packed: false,
       id: Date.now(),
     };
-    console.log(newItem);
 
+    handleAddItems(newItem);
     setDescription("");
     setQuantity(1);
   };
