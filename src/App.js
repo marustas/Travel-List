@@ -100,6 +100,13 @@ const Stats = ({ items }) => {
   const numPackedItems = items.filter((item) => item.packed).length;
   const numPackedItemsPercent =
     numPackedItems > 0 ? (numPackedItems / numItems) * 100 : 0;
+  if (!items.length) {
+    return (
+      <p className="stats">
+        <em>Start adding items to your packing list 🚀</em>
+      </p>
+    );
+  }
   return (
     <footer className="stats">
       <em>
