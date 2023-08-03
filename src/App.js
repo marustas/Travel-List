@@ -3,7 +3,6 @@ import "./index.css";
 
 const App = () => {
   const [items, setItems] = useState([]);
-  const numItems = items.length;
   const handleAddItems = (item) => {
     //Creating new array, since React is immutable and we can't simply update the previous array
     setItems((items) => [...items, item]);
@@ -29,7 +28,7 @@ const App = () => {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
       />
-      <Stats numItems={numItems} />
+      <Stats items={items} />
     </div>
   );
 };
@@ -96,7 +95,8 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
     </div>
   );
 };
-const Stats = ({ numItems }) => {
+const Stats = ({ items }) => {
+  const numItems = items.length;
   return (
     <footer className="stats">
       <em>
