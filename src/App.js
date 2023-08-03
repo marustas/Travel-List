@@ -97,7 +97,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
 };
 const Stats = ({ items }) => {
   const numItems = items.length;
-  const numPackedItems = items.filter((item) => item.packed === true).length;
+  const numPackedItems = items.filter((item) => item.packed).length;
   const numPackedItemsPercent =
     numPackedItems > 0 ? (numPackedItems / numItems) * 100 : 0;
   return (
