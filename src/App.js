@@ -86,10 +86,10 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
   if (sortBy === "input") {
     sortedItems = items;
   }
-  if (sortBy === "descritpion") {
+  if (sortBy === "description") {
     sortedItems = items
       .slice()
-      .sort((a, b) => a.description.localCompare(b.description));
+      .sort((a, b) => a.description.localeCompare(b.description));
   }
   if (sortBy === "packed") {
     sortedItems = items
@@ -114,7 +114,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
           onChange={(event) => setSortBy(event.target.value)}
         >
           <option value="input">Sort by input order</option>
-          <option value="description">Sort by desscription</option>
+          <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
       </div>
