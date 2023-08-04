@@ -19,6 +19,10 @@ const App = () => {
       )
     );
   };
+
+  const handleClearList = () => {
+    setItems([]);
+  };
   return (
     <div className="app">
       <Logo />
@@ -27,6 +31,7 @@ const App = () => {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
+        onClearList={handleClearList}
       />
       <Stats items={items} />
     </div>
@@ -79,7 +84,7 @@ const Form = ({ onAddItems }) => {
     </form>
   );
 };
-const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
+const PackingList = ({ items, onDeleteItem, onToggleItem, onClearList }) => {
   const [sortBy, setSortBy] = useState("input");
   let sortedItems;
 
@@ -105,6 +110,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
             key={item.id}
             onDeleteItem={onDeleteItem}
             onToggleItem={onToggleItem}
+            onClearList={onClearList}
           />
         ))}
       </ul>
@@ -117,6 +123,7 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
+        <button onClick={(e) => onClearList(e)}>Clear list</button>
       </div>
     </div>
   );
